@@ -29,6 +29,12 @@ if file_accessible(t + '.txt','a'):
     f.write('\n')
 else:
     f = open((t + '.txt','w'))    
+#The filetype could very well be anything here.
+#I elected to use *.txt for ease of opening in
+#Notepad to make print-outs. Consiering changing
+#subsequent versions to .log filetype. 
+
+
 
 #following are the Button Functions:
 
@@ -48,6 +54,8 @@ def callback():
         rst = e4.get()
         while len(rst) < 4:
             rst += ' '
+            
+        #The following puts the UTC Timestamp in a 'usable' format onto each log entry
         now = str( datetime.datetime.utcfromtimestamp(time.time()))
         full_entry = callsign + '  ' + frequency + '  ' + mode + '  ' + rst + '  ' + now + '\n'
         f.write(full_entry)
@@ -120,9 +128,9 @@ def clearall():
         print 'error clearall'
 
 master = Tk()
-master.wm_title('KD5IPH Fast Log 0.4 Beta')
-#Label(master, text = 'kd5iph fast log').grid(row = 0, column = 0)
-    #above replaced by main title bar
+#Update the number as this evolves.
+master.wm_title('Fast Log 0.4 Beta') 
+
 e1 = Entry(master)
 e1.grid(row = 1, column = 0)
 e1.delete(0, END)
@@ -166,19 +174,18 @@ clear = Button(master, text = 'clear', width = 10, command = clearall).grid(row 
 clock = Label(master)
 clock.grid(row = 2, column = 0)
 time1 =''
+
 def tick():
     global time1 
-    # get the current local time from the PC
     time2 = time.strftime('%a, %d %b %Y  %H:%M:%S ',gmtime())
-    # if time string has changed, update it
     if time2 != time1:
         time1 = time2
         clock.config(text=time2)
-    # calls itself every 200 milliseconds
-    # to update the time display as needed
-    # could use >200 ms, but display gets jerky
-    clock.after(200, tick)
-tick()
+    clock.after(200, tick) #200 ms accuracy to the clock. This does not generate the timestamp in the files, however.
 
+
+tick()
 master.mainloop()
 f.close()
+
+
