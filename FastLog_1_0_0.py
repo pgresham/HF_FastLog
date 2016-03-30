@@ -81,78 +81,41 @@ def callback():
             txtboxRst.insert(0,'rst')
     else:
         print 'blank entry'
-        txtboxCallSign.delete(0,END)
-        txtboxCallSign.insert(0,'call sign')
-        #checkFreqLock checkbutton to lock frequency
-        if varFreqLock.get():
-            pass
-        else:
-            txtboxFrequency.delete(0,END)
-            txtboxFrequency.insert(0,'frequency')
-        #checkModeLock checkbutton to lock mode
-        if varModeLock.get():
-            pass
-        else:
-            txtboxMode.delete(0,END)
-            txtboxMode.insert(0,'mode')
-        #checkRstLock checkbutton to lock r/s/t (this is a nod to robo-DX'ers)
-        if varRstLock.get():
-            pass
-        else:
-            txtboxRst.delete(0,END)
-            txtboxRst.insert(0,'rst')
+
 def clearall():
 #note: checkbuttons enabled will not be cleared.
     try:
         txtboxCallSign.delete(0,END)
-        txtboxCallSign.insert(0,'call sign')
-        
-        if varFreqLock.get():
-            pass
-        else:
-            txtboxFrequency.delete(0,END)
-            txtboxFrequency.insert(0,'frequency')
-       
-        if varModeLock.get():
-            pass
-        else:
-            txtboxMode.delete(0,END)
-            txtboxMode.insert(0,'mode')
-        
-        if varRstLock.get():
-            pass
-        else:
-            txtboxRst.delete(0,END)
-            txtboxRst.insert(0,'rst')
+        txtboxFrequency.delete(0,END)
+        txtboxMode.delete(0,END)
+        txtboxRst.delete(0,END)
     except:
         print 'error clearall'
 
+#UI initialisation start
 master = Tk()
 #Update the number as this evolves.
-master.wm_title('Fast Log 1.0.1') 
+master.wm_title('Fast Log 1.1.1') 
 
 txtboxCallSign = Entry(master)
 txtboxCallSign.grid(row = 1, column = 0)
 txtboxCallSign.delete(0, END)
-txtboxCallSign.insert(0, 'call sign')
 txtboxCallSign.focus_set()
 
 txtboxFrequency = Entry(master)
 txtboxFrequency.grid(row = 1, column = 1)
 txtboxFrequency.delete(0, END)
-txtboxFrequency.insert(0, 'frequency')
 txtboxFrequency.focus_set()
 
 txtboxMode = Entry(master)
 txtboxMode.grid(row = 1, column = 2)
 txtboxMode.delete(0, END)
-txtboxMode.insert(0, 'mode')
 txtboxMode.focus_set()
 
 txtboxRst = Entry(master)
 txtboxRst.grid(row = 1, column = 3)
 txtboxRst.delete(0, END)
-txtboxRst.insert(0, 'rst')
+
 txtboxRst.focus_set()
 
 
@@ -174,6 +137,29 @@ clear = Button(master, text = 'clear', width = 10, command = clearall).grid(row 
 clock = Label(master)
 clock.grid(row = 2, column = 0)
 timtxtboxCallSign =''
+
+
+lblCall = Label(master)
+lblCall.grid(row = 0, column = 0)
+txtCall = "Call sign"
+lblCall.config(text=txtCall)
+
+lblFreq = Label(master)
+lblFreq.grid(row = 0, column = 1)
+txtFreq = "Frequency"
+lblFreq.config(text=txtFreq)
+
+lblMode =  Label(master)
+lblMode.grid(row = 0, column = 2)
+txtMode = "mode"
+lblMode.config(text=txtMode)
+
+lblRst = Label(master)
+lblRst.grid(row = 0, column = 3)
+txtRst = "rst"
+lblRst.config(text=txtRst)
+
+#UI initialization end
 
 def tick():
     global timtxtboxCallSign 
