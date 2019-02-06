@@ -8,15 +8,11 @@ import datetime
 import os.path
 
 def file_accessible(filepath, mode):
-    ''' Check if a file exists and is accessible.
-        Many Thanx to pythoncentral.io for this
-        code block. '''
     try:
         fileWrite = open(filepath, mode)
         fileWrite.close()
     except IOError as e:
-        return False
- 
+        return False 
     return True
     
 if not os.path.exists('logs'):
