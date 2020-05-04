@@ -1,8 +1,5 @@
 from Tkinter import *
 import time
-from time import strftime, gmtime
-from datetime import datetime
-from datetime import date
 import datetime
 
 #following are the file functions usable for this:
