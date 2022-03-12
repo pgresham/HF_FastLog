@@ -9,6 +9,5 @@ Logs are generated for each day with the format `yyyy-mm-dd.log` with spaced tex
 ### Anything Else to Know?
 Nope, that's pretty much it. This is designed to be simple! 
 
-### Here's the most current version (2.0.1)
+### [Here's the most current version (2.0.1)](https://github.com/pgresham/HF_FastLog/blob/master/FastLog2_0_1.py)
 It is made to work in Python 3.x.x and requires Tkinter to be installed if it isn't already present.
-[Fastlog 2.0.1](https://github.com/pgresham/HF_FastLog/blob/master/FastLog2_0_1.py)
