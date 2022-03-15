@@ -18,7 +18,6 @@ from time import strftime, gmtime
 from datetime import datetime
 from datetime import date
 import datetime
-
 import os.path
 
 def file_accessible(filepath, mode):
@@ -30,16 +29,6 @@ def file_accessible(filepath, mode):
  
     return True
     
-if not os.path.exists('logs'):
-    os.makedirs('logs')         
-t = str(datetime.date.today())
-t = os.path.abspath('logs/%s.log'%t)
-if file_accessible(t,'a'):
-    f = open(t,'a')
-    f.write('\n')
-else:
-    f = open(t,'w')   
-
 
 def callback():
 
@@ -187,11 +176,31 @@ def tick():
     clock.after(200, tick) #200 ms accuracy to the clock. This does not generate the timestamp in the files, however.
 
 if __name__ == '__main__':
-    tick()
+
+
     try:
+        tick()
+        if not os.path.exists('logs'):
+            os.makedirs('logs')         
+        else:
+            pass
+        t = str(datetime.date.today())
+        t = os.path.abspath('logs/%s.log'%t)
+        if file_accessible(t,'a'):
+            f = open(t,'a')
+            f.write('\n')
+        else:
+            f = open(t,'w')   
+            
         master.mainloop()
     except Exception as e:
         print(e)
     finally:
-        f.close()
-        exit(0)
+        try:
+            if f:
+                f.close()
+                exit(0)
+            else:
+                exit(0)
+        except:
+        	exit(0)
